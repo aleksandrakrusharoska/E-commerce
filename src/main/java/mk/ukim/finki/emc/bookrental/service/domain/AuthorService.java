@@ -1,0 +1,12 @@
+package mk.ukim.finki.emc.bookrental.service.domain;
+
+import mk.ukim.finki.emc.bookrental.model.domain.Author;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface AuthorService {
+    List<Author> findAll();
+
+    Optional<Author> findById(Long id);
+}
