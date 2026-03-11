@@ -4,7 +4,6 @@ import mk.ukim.finki.emc.bookrental.model.domain.Book;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.Category;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public record DisplayBookDto(

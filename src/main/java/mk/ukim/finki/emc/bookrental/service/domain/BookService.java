@@ -17,4 +17,6 @@ public interface BookService {
     Optional<Book> deleteById(Long id);
 
     Book markAsRented(Book book);
+
+    List<Book> findAllByIdIsBetween(Long a, Long b);
 }

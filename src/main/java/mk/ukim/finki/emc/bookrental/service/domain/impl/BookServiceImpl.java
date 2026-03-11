@@ -57,4 +57,9 @@ public class BookServiceImpl implements BookService {
         book.setAvailableCopies(book.getAvailableCopies() - 1);
         return bookRepository.save(book);
     }
+
+    @Override
+    public List<Book> findAllByIdIsBetween(Long a, Long b) {
+        return bookRepository.findAllByIdIsBetween(a, b);
+    }
 }

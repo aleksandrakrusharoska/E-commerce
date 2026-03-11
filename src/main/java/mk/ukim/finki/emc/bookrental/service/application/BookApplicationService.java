@@ -1,5 +1,6 @@
 package mk.ukim.finki.emc.bookrental.service.application;
 
+import mk.ukim.finki.emc.bookrental.model.domain.Book;
 import mk.ukim.finki.emc.bookrental.model.dto.CreateBookDto;
 import mk.ukim.finki.emc.bookrental.model.dto.DisplayBookDto;
 
@@ -18,4 +19,6 @@ public interface BookApplicationService {
     Optional<DisplayBookDto> deleteById(Long id);
 
     DisplayBookDto markAsRented(Long id);
+
+    List<DisplayBookDto> findAllByIdIsBetween(Long a, Long b);
 }

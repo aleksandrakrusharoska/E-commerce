@@ -64,6 +64,11 @@ public class BookApplicationServiceImpl implements BookApplicationService {
         return DisplayBookDto.from(bookService.markAsRented(book));
     }
 
+    @Override
+    public List<DisplayBookDto> findAllByIdIsBetween(Long a, Long b) {
+        return DisplayBookDto.from(bookService.findAllByIdIsBetween(a, b));
+    }
+
     private Author findAuthorById(Long authorId) {
         return authorService.findById(authorId)
                 .orElseThrow(() -> new ResourceNotFoundException("Author", authorId));

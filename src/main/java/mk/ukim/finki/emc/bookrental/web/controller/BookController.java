@@ -60,4 +60,10 @@ public class BookController {
     public ResponseEntity<DisplayBookDto> markAsRented(@PathVariable Long id) {
         return ResponseEntity.ok(bookApplicationService.markAsRented(id));
     }
+
+    @GetMapping("/range")
+    public ResponseEntity<List<DisplayBookDto>> findAllByIdIsBetween(@RequestParam Long a, @RequestParam Long b) {
+        return ResponseEntity.ok(bookApplicationService.findAllByIdIsBetween(a, b));
+    }
+
 }
