@@ -11,6 +11,20 @@ import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedEntityGraph(
+        name = "book-author-country-graph",
+        attributeNodes = {
+                @NamedAttributeNode(value = "author", subgraph = "author-country-subgraph")
+        },
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "author-country-subgraph",
+                        attributeNodes = {
+                                @NamedAttributeNode("country")
+                        }
+                )
+        }
+)
 public class Book extends BaseAuditableEntity {
     @Column(nullable = false)
     private String name;
@@ -19,7 +33,7 @@ public class Book extends BaseAuditableEntity {
     @Column(nullable = false)
     private Category category;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id")
     private Author author;
 
