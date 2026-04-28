@@ -43,4 +43,15 @@ public class Book extends BaseAuditableEntity {
 
     @Column(name = "available_copies", nullable = false)
     private Integer availableCopies;
+
+    @Column(nullable = false)
+    private Integer rentCount = 0;
+
+    public Book(String name, Category category, Author author, State state, Integer availableCopies) {
+        this.name = name;
+        this.category = category;
+        this.author = author;
+        this.state = state;
+        this.availableCopies = availableCopies;
+    }
 }

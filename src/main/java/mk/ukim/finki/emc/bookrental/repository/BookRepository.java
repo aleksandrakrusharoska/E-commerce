@@ -23,4 +23,6 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
     Page<BookShortProjection> findAllShortBy(Pageable pageable);
 
     Page<BookExpandedProjection> findAllExpandedBy(Pageable pageable);
+
+    List<Book> findTop5ByOrderByRentCountDesc();
 }

@@ -114,4 +114,9 @@ public class BookController {
                 bookApplicationService.findAllExpanded(page, size, sortBy, direction)
         );
     }
+
+    @GetMapping("/popular")
+    public ResponseEntity<List<DisplayBookDto>> findTopPopularBooks() {
+        return ResponseEntity.ok(bookApplicationService.findTopPopularBooks());
+    }
 }

@@ -6,10 +6,7 @@ import mk.ukim.finki.emc.bookrental.model.domain.Author;
 import mk.ukim.finki.emc.bookrental.model.domain.Book;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.Category;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
-import mk.ukim.finki.emc.bookrental.model.dto.CreateBookDto;
-import mk.ukim.finki.emc.bookrental.model.dto.DisplayBookDetailsDto;
-import mk.ukim.finki.emc.bookrental.model.dto.DisplayBookDto;
-import mk.ukim.finki.emc.bookrental.model.dto.DisplayBookSearchDto;
+import mk.ukim.finki.emc.bookrental.model.dto.*;
 import mk.ukim.finki.emc.bookrental.model.exception.NoAvailableCopiesException;
 import mk.ukim.finki.emc.bookrental.model.exception.ResourceNotFoundException;
 import mk.ukim.finki.emc.bookrental.model.projection.BookExpandedProjection;
@@ -119,4 +116,11 @@ public class BookApplicationServiceImpl implements BookApplicationService {
     ) {
         return bookService.findAllExpanded(page, size, sortBy, direction);
     }
+
+    @Override
+    public List<DisplayBookDto> findTopPopularBooks() {
+        return DisplayBookDto.from(bookService.findTopPopularBooks());
+    }
+
+
 }

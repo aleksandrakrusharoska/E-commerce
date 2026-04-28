@@ -1,5 +1,6 @@
 package mk.ukim.finki.emc.bookrental.service.application;
 
+import mk.ukim.finki.emc.bookrental.model.domain.Book;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.Category;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
 import mk.ukim.finki.emc.bookrental.model.dto.CreateBookDto;
@@ -52,4 +53,6 @@ public interface BookApplicationService {
             String sortBy,
             String direction
     );
+
+    List<DisplayBookDto> findTopPopularBooks();
 }

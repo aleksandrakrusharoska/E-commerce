@@ -51,4 +51,6 @@ public interface BookService {
             String sortBy,
             String direction
     );
+
+    List<Book> findTopPopularBooks();
 }

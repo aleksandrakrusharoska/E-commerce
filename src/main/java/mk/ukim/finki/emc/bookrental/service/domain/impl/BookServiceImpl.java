@@ -5,6 +5,7 @@ import mk.ukim.finki.emc.bookrental.events.BookRentedEvent;
 import mk.ukim.finki.emc.bookrental.model.domain.Book;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.Category;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
+import mk.ukim.finki.emc.bookrental.model.dto.PopularAuthorDto;
 import mk.ukim.finki.emc.bookrental.model.projection.BookExpandedProjection;
 import mk.ukim.finki.emc.bookrental.model.projection.BookShortProjection;
 import mk.ukim.finki.emc.bookrental.repository.BookRepository;
@@ -68,6 +69,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book markAsRented(Book book) {
         book.setAvailableCopies(book.getAvailableCopies() - 1);
+        book.setRentCount(book.getRentCount() + 1);
+
         Book savedBook = bookRepository.save(book);
 
         eventPublisher.publishEvent(new BookRentedEvent(savedBook));
@@ -122,6 +125,11 @@ public class BookServiceImpl implements BookService {
     public Page<BookExpandedProjection> findAllExpanded(int page, int size, String sortBy, String direction) {
         Pageable pageable = createPageable(page, size, sortBy, direction);
         return bookRepository.findAllExpandedBy(pageable);
+    }
+
+    @Override
+    public List<Book> findTopPopularBooks() {
+        return bookRepository.findTop5ByOrderByRentCountDesc();
     }
 
     private Pageable createPageable(int page, int size, String sortBy, String direction) {
