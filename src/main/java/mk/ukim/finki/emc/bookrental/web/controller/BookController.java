@@ -1,6 +1,7 @@
 package mk.ukim.finki.emc.bookrental.web.controller;
 
 import jakarta.validation.Valid;
+import mk.ukim.finki.emc.bookrental.model.domain.User;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.Category;
 import mk.ukim.finki.emc.bookrental.model.domain.enums.State;
 import mk.ukim.finki.emc.bookrental.model.dto.CreateBookDto;
@@ -12,6 +13,7 @@ import mk.ukim.finki.emc.bookrental.model.projection.BookShortProjection;
 import mk.ukim.finki.emc.bookrental.service.application.BookApplicationService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,8 +65,10 @@ public class BookController {
     }
 
     @PutMapping("/{id}/rent")
-    public ResponseEntity<DisplayBookDto> markAsRented(@PathVariable Long id) {
-        return ResponseEntity.ok(bookApplicationService.markAsRented(id));
+    public ResponseEntity<DisplayBookDto> markAsRented(
+            @PathVariable Long id,
+            @AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(bookApplicationService.markAsRented(id, user.getUsername()));
     }
 
     @GetMapping("/range")

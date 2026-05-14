@@ -16,7 +16,7 @@ public class Author extends BaseAuditableEntity {
     @Column(nullable = false)
     private String surname;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "country_id")
     private Country country;
 }

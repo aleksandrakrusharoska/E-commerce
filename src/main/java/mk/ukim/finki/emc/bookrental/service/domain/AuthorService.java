@@ -10,6 +10,8 @@ public interface AuthorService {
 
     Optional<Author> findById(Long id);
 
+    Optional<Author> findByIdWithCountry(Long id);
+
     Author create(Author author);
 
     Optional<Author> update(Long id, Author author);

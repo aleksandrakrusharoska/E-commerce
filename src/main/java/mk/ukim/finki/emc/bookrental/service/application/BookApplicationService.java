@@ -25,7 +25,7 @@ public interface BookApplicationService {
 
     Optional<DisplayBookDto> deleteById(Long id);
 
-    DisplayBookDto markAsRented(Long id);
+    DisplayBookDto markAsRented(Long id, String username);
 
     List<DisplayBookDto> findAllByIdIsBetween(Long a, Long b);
 

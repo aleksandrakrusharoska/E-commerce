@@ -59,13 +59,15 @@ public class BookApplicationServiceImpl implements BookApplicationService {
     }
 
     @Override
-    public DisplayBookDto markAsRented(Long id) {
+    public DisplayBookDto markAsRented(Long id, String username) {
         Book book = bookService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Book", id));
 
         if (book.getAvailableCopies() <= 0) {
             throw new NoAvailableCopiesException(id);
         }
+
+        System.out.println("Book rented by user: " + username);
 
         return DisplayBookDto.from(bookService.markAsRented(book));
     }
